@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'pkg01_helloworld_py'
+package_name = 'py01_topic'
 
 setup(
     name=package_name,
@@ -24,7 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'helloworld = pkg01_helloworld_py.helloworld:main'
+            'demo01_talker_str_py = py01_topic.demo01_talker_str_py:main'
         ],
     },
 )
