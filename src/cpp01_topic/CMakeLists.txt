@@ -12,6 +12,9 @@ find_package(std_msgs REQUIRED)
 find_package(common REQUIRED)
 
 add_executable(demo01_talker_str_cpp src/demo01_talker_str_cpp.cpp)
+add_executable(demo02_listener_str_cpp src/demo02_listener_str_cpp.cpp)
+
+
 target_include_directories(demo01_talker_str_cpp PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
@@ -23,8 +26,20 @@ ament_target_dependencies(
   "common"
 )
 
-install(TARGETS demo01_talker_str_cpp
-  DESTINATION lib/${PROJECT_NAME})
+target_compile_features(demo02_listener_str_cpp PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+ament_target_dependencies(
+  demo02_listener_str_cpp
+  "rclcpp"
+  "std_msgs"
+  "common"
+)
+
+
+install(TARGETS 
+        demo01_talker_str_cpp
+        demo02_listener_str_cpp
+
+        DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
